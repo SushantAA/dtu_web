@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>hello</h1>
+{% endblock %}
+
+{% block body %}
+<h1>mello</h1>
+
+<div>
+
+    {{todo}}
+
+    <form action="{{ url_for('complete_todo_delete', oid = todo._id) }}">
+        <input type="submit" value="delete">
+    </form>
+
+    <form action="{{ url_for('complete_todo_update', oid = todo._id) }}">
+        <input type="text" name="umm" id="ummid">
+        <input type="submit" value="update">
+    </form>
+
+</div>
+
+
+
+{% endblock %}

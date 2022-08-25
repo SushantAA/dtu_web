@@ -7,8 +7,25 @@
 {% block body %}
 <h1>mello</h1>
 
-<form action="/sus" method="PUT">
-    <input type="text">
-    <input type="submit">
+<form action="/sus" method="POST">
+    <input type="text" name="mm" id="mmid">
+    <input type="submit" value="add">
 </form>
+
+<div>
+
+    {% for todo in todos %}
+    <a href="{{ url_for('complete_todo', oid = todo._id) }}">
+        
+        <ol>{{todo.title}}</ol>
+    </a>
+        <!-- <form action="/delete">
+            <input type="submit" value="delete">
+        </form> -->
+    {% endfor %}
+
+</div>
+
+
+
 {% endblock %}
