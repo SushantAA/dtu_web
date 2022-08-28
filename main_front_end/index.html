@@ -6,13 +6,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <title>Document</title>
+    <style>
+    body {
+      font-family: 'Varela Round', sans-serif;
+    }
+    .form-control {
+      box-shadow: none;		
+      font-weight: normal;
+      font-size: 13px;
+    }
+    .navbar {
+      background: #fff;
+      padding-left: 16px;
+      padding-right: 16px;
+      border-bottom: 1px solid #dfe3e8;
+      border-radius: 0;
+    }
+    .navbar .form-inline {
+      display: inline-block;
+    }
+    .navbar a {
+      color: #888;
+      font-size: 15px;
+    }
+    .navbar .sign-up-btn {
+      min-width: 110px;
+      max-height: 36px;
+      color: #9b59b6;
+    }
+    .navbar .dropdown-menu {
+      color: #999;
+      font-weight: normal;
+      border-radius: 1px;
+      border-color: #e5e5e5;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .navbar a, .navbar a:active {
+      color: #888;
+      padding: 8px 20px;
+      background: transparent;
+      line-height: normal;
+    }
+    .navbar .navbar-form {
+      border: none;
+    }
+    .navbar .action-form {
+      width: 280px;
+      padding: 20px;
+      left: auto;
+      right: 0;
+      font-size: 14px;
+    }
+    .navbar .action-form a {		
+      color: rgb(79 70 229);
+      padding: 0 !important;
+      font-size: 14px;
+    }
+    .navbar .action-form .hint-text {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+    .navbar .btn-primary, .navbar .btn-primary:active {
+      color: #fff;
+      background: rgb(79 70 229) !important;
+      border: none;
+    }	
+    .navbar .btn-primary:hover, .navbar .btn-primary:focus {		
+      color: #fff;
+      background: rgb(79 70 229) !important;
+    }
+    .navbar .social-btn .btn, .navbar .social-btn .btn:hover {
+      color: #fff;
+      margin: 0;
+      padding: 0 !important;
+      font-size: 13px;
+      border: none;
+      transition: all 0.4s;
+      text-align: center;
+      line-height: 34px;
+      width: 47%;
+      text-decoration: none;
+    }
+    .navbar .social-btn .facebook-btn {
+      background: #507cc0;
+    }
+    .navbar .social-btn .facebook-btn:hover {
+      background: #4676bd;
+    }
+    .navbar .social-btn .twitter-btn {
+      background: #64ccf1;
+    }
+    .navbar .social-btn .twitter-btn:hover {
+      background: #4ec7ef;
+    }
+    .navbar .social-btn .btn i {
+      margin-right: 5px;
+      font-size: 16px;
+      position: relative;
+      top: 2px;
+    }
+    .or-seperator {
+      margin-top: 32px;
+      text-align: center;
+      border-top: 1px solid #e0e0e0;
+    }
+    .or-seperator b {
+      color: #666;
+      padding: 0 8px;
+      width: 30px;
+      height: 30px;
+      font-size: 13px;
+      text-align: center;
+      line-height: 26px;
+      background: #fff;
+      display: inline-block;
+      border: 1px solid #e0e0e0;
+      border-radius: 50%;
+      position: relative;
+      top: -15px;
+      z-index: 1;
+    }
+    .navbar .action-buttons .dropdown-toggle::after {
+      display: none;
+    }
+    .form-check-label input {
+      position: relative;
+      top: 1px;
+    }
+    @media (min-width: 1200px){
+      .form-inline .input-group {
+        width: 300px;
+        margin-left: 30px;
+      }
+    }
+    @media (max-width: 768px){
+      .navbar .dropdown-menu.action-form {
+        width: 100%;
+        padding: 10px 15px;
+        background: transparent;
+        border: none;
+      }
+      .navbar .form-inline {
+        display: block;
+      }
+      .navbar .input-group {
+        width: 100%;
+      }
+    }
+    </style>
+    <script>
+    // Prevent dropdown menu from closing when click inside the form
+    $(document).on("click", ".action-buttons .dropdown-menu", function(e){
+      e.stopPropagation();
+    });
+    </script>
 </head>
 <body class="bg-indigo-600" >
-
+  <nav class="navbar navbar-expand-lg navbar-light">
+		<div class="navbar-nav ms-auto action-buttons">
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle me-4" data-bs-toggle="dropdown">Login</a>
+        <div class="dropdown-menu action-form">
+					<form action="/examples/actions/confirmation.php" method="post">
+						<p class="hint-text">Sign in with your social media account</p>
+						<div class="mb-3 social-btn clearfix">
+							<a href="#" class="btn btn-secondary facebook-btn float-start"><i class="fa fa-facebook"></i> Facebook</a>
+							<a href="#" class="btn btn-secondary twitter-btn float-end"><i class="fa fa-twitter"></i> Twitter</a>
+						</div>
+						<div class="or-seperator"><b>or</b></div>
+						<div class="mb-3">
+							<input type="text" class="form-control" placeholder="Username" required="required">
+						</div>
+						<div class="mb-3">
+							<input type="password" class="form-control" placeholder="Password" required="required">
+						</div>
+						<input type="submit" class="btn btn-primary btn-block" value="Login">
+						<div class="text-center mt-2">
+							<a href="#">Forgot Your password?</a>
+						</div>
+					</form>
+        </div>
+			</div>
+      <div class="nav-item dropdown">
+        <a href="#" class="btn btn-primary dropdown-toggle sign-up-btn" data-bs-toggle="dropdown">Sign Up</a>
+        <div class="dropdown-menu action-form">
+					<form action="/examples/actions/confirmation.php" method="post">
+						<p class="hint-text">Fill in this form to create your account!</p>
+						<div class="mb-3">
+							<input type="text" class="form-control" placeholder="Username" required="required">
+						</div>
+						<div class="mb-3">
+							<input type="password" class="form-control" placeholder="Password" required="required">
+						</div>
+						<div class="mb-3">
+							<input type="password" class="form-control" placeholder="Confirm Password" required="required">
+						</div>
+						<div class="mb-3">
+							<label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms &amp; Conditions</a></label>
+						</div>
+						<input type="submit" class="btn btn-primary btn-block" value="Sign up">
+					</form>
+				</div>
+      </div>
+	</div>
+</nav>
   <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="relative bg-white overflow-hidden">
     <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
@@ -177,7 +384,7 @@
 
             <div class="group relative card">
                 <div class="card-body">
-                  <h3 class="card-title block text-indigo-600 fw-bold text-center">KNOWLADGE AREA</h3>
+                  <h3 class="card-title block text-indigo-600 fw-bold text-center">KNOWLEDGE AREA</h3>
                
                     <div class="mt-4 flex justify-between">
                         <p class="text-sm font-medium text-gray-900">AI</p>
